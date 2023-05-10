@@ -1,6 +1,6 @@
 import { Form as FinalForm, Field as FinalFormField } from "react-final-form";
 import { setIn } from "final-form";
-import { Form, Button } from "semantic-ui-react";
+import { Container, Form, Button } from "semantic-ui-react";
 import * as yup from "yup";
 
 const validateFormValues =
@@ -62,43 +62,45 @@ const validate = validateFormValues({ schema });
 
 function App() {
   return (
-    <FinalForm
-      validate={validate}
-      onSubmit={(values) => alert(JSON.stringify(values))}
-      render={({ handleSubmit }) => (
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <FinalFormField
-              id="firstName"
-              name="firstName"
-              render={({ input, meta }) => (
-                <Form.Input
-                  label="First Name"
-                  {...input}
-                  {...meta}
-                  error={meta.touched && meta.error ? meta.error : null}
-                />
-              )}
-            />
-          </Form.Group>
-          <Form.Group>
-            <FinalFormField
-              id="nickName"
-              name="nickName"
-              render={({ input, meta }) => (
-                <Form.Input
-                  label="Nickname"
-                  {...input}
-                  {...meta}
-                  error={meta.touched && meta.error ? meta.error : null}
-                />
-              )}
-            />
-          </Form.Group>
-          <Button type="submit">Submit</Button>
-        </Form>
-      )}
-    />
+    <Container>
+      <FinalForm
+        validate={validate}
+        onSubmit={(values) => alert(JSON.stringify(values))}
+        render={({ handleSubmit }) => (
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <FinalFormField
+                name="firstName"
+                render={({ input, meta }) => (
+                  <Form.Input
+                    label="First Name"
+                    id="firstName"
+                    {...input}
+                    {...meta}
+                    error={meta.touched && meta.error ? meta.error : null}
+                  />
+                )}
+              />
+            </Form.Group>
+            <Form.Group>
+              <FinalFormField
+                name="nickName"
+                render={({ input, meta }) => (
+                  <Form.Input
+                    label="Nickname"
+                    id="nickName"
+                    {...input}
+                    {...meta}
+                    error={meta.touched && meta.error ? meta.error : null}
+                  />
+                )}
+              />
+            </Form.Group>
+            <Button type="submit">Submit</Button>
+          </Form>
+        )}
+      />
+    </Container>
   );
 }
 
